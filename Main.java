@@ -24,7 +24,8 @@ public class Main {
             System.out.println("1. Ajouter une tâche");
             System.out.println("2. Lister les tâches");
             System.out.println("3. Marquer une tâche comme faite");
-            System.out.println("4. Quitter");
+            System.out.println("4. Afficher les tâches faites");
+            System.out.println("5. Quitter");
             System.out.println("Choisissez une option : ");
             int option = scanner.nextInt();
             scanner.nextLine();
@@ -39,14 +40,34 @@ public class Main {
             } else if (option == 2) {
                 for (int i = 0; i < taskList.tasks.size(); i++) {
                     Task task = taskList.tasks.get(i);
-                    System.out.println((i + 1) + ". " + task.title + " - " + task.description + " - " + (task.done ? "Fait" : "À faire"));
+                    if (task.done == false) {
+                        System.out.println((i + 1) + ". " + task.title + " - " + task.description + " - " + ("À faire")); 
+                     } else {
+                        System.out.println("Vous avez terminé toutes vos tâches");
+                     }
+
                 }
             } else if (option == 3) {
                 System.out.println("Quelle tâche voulez-vous marquer comme faite ?");
                 int taskNumber = scanner.nextInt();
                 Task task = taskList.tasks.get(taskNumber - 1);
                 task.done = true;
-            } else if (option == 4) {
+                if (task.done) {
+                    System.out.println("La tâche " + task.title + " est marquée comme faite.");
+                }
+            } 
+            else if (option == 4){
+                for (int i = 0; i < taskList.tasks.size(); i++) {
+                    Task task = taskList.tasks.get(i);
+                    if (task.done) {
+                        System.out.println((i + 1) + ". " + task.title + " - " + task.description + " - " + ("Fait"));
+                    } else {
+                        System.out.println("Aucune tâche de faites");
+                    }
+                }
+            }
+            else if (option == 5) {
+                System.out.println("Au revoir !");
                 scanner.close();
                 break;
             }
