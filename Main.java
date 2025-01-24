@@ -17,6 +17,8 @@ public class Main {
 
         TaskList taskList = new TaskList();
 
+        String delete = "O";
+
         Scanner scanner = new Scanner(System.in);
         // Scanner permet de lire les entrées de l'utilisateur
 
@@ -60,7 +62,25 @@ public class Main {
                 for (int i = 0; i < taskList.tasks.size(); i++) {
                     Task task = taskList.tasks.get(i);
                     if (task.done) {
-                        System.out.println((i + 1) + ". " + task.title + " - " + task.description + " - " + ("Fait"));
+                        for( i = 0; i < taskList.tasks.size(); i++) {
+                            task = taskList.tasks.get(i);
+                            System.out.println((i + 1) + ". " + task.title + " - " + task.description + " - " + ("Fait"));
+                        }
+                        System.out.println("Voulez-vous supprimer une tâche ? (O/N)");
+                        delete = scanner.nextLine();
+                        if (delete.equalsIgnoreCase("O")) {
+                            System.out.println("Quelle tâche voulez-vous supprimer ?");
+                            int taskToDelete = scanner.nextInt();
+                            scanner.nextLine(); 
+                            if (taskToDelete > 0 && taskToDelete <= taskList.tasks.size()) {
+                                taskList.tasks.remove(taskToDelete - 1);
+                                System.out.println("La tâche a été supprimée");
+                            } else {
+                                System.out.println("Numéro de tâche invalide");
+                            }
+                        } else {
+                            // rien ne se passe si l'utilisateur ne veut pas supprimer la tâche
+                        }
                     } else {
                         System.out.println("Aucune tâche de faites");
                     }
