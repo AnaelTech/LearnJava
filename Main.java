@@ -75,7 +75,8 @@ public class Main {
                             if (taskToDelete > 0 && taskToDelete <= taskList.tasks.size()) {
                                 taskList.tasks.remove(taskToDelete - 1);
                                 System.out.println("La tâche a été supprimée");
-                            } else {
+                            } 
+                            else {
                                 System.out.println("Numéro de tâche invalide");
                             }
                         } else {
